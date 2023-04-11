@@ -10,6 +10,7 @@ export type CustomSliderStyle = {
   containerStyle: ViewStyle;
   trackStyle: ViewStyle;
   thumbStyle: ViewStyle;
+  bufferStyle: ViewStyle;
 };
 
 type Props = Pick<
@@ -24,6 +25,7 @@ type Props = Pick<
 > & {
   onPause: () => void;
   customSliderStyle?: CustomSliderStyle;
+  bufferValue?: number;
 };
 
 const fullScreenImage = require("./assets/ic_fullscreen.png");
@@ -36,11 +38,13 @@ const Slider = (props: Props) => {
     onFullScreen,
     onPause,
     progress,
+    bufferValue,
   } = props;
 
   const containerStyle = customSliderStyle?.containerStyle || {};
   const customTrackStyle = customSliderStyle?.trackStyle || {};
   const customThumbStyle = customSliderStyle?.thumbStyle || {};
+  const bufferStyle = customSliderStyle?.bufferStyle || {};
 
   const dragging = (value: number) => {
     const { onSeeking, playerState } = props;
@@ -73,6 +77,8 @@ const Slider = (props: Props) => {
         </View>
         <RNSlider
           style={[styles.progressSlider]}
+          bufferValue={bufferValue}
+          bufferStyle={bufferStyle}
           onValueChange={dragging}
           onSlidingComplete={seekVideo}
           maximumValue={Math.floor(duration)}

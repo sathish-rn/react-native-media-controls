@@ -30,6 +30,7 @@ export type Props = {
   showOnStart?: boolean;
   sliderStyle?: CustomSliderStyle;
   toolbarStyle?: ViewStyle;
+  bufferValue?: number;
 };
 
 const MediaControls = (props: Props) => {
@@ -49,6 +50,7 @@ const MediaControls = (props: Props) => {
     showOnStart = true,
     sliderStyle, // defaults are applied in Slider.tsx
     toolbarStyle: customToolbarStyle = {},
+    bufferValue,
   } = props;
   const { initialOpacity, initialIsVisible } = (() => {
     if (showOnStart) {
@@ -161,6 +163,7 @@ const MediaControls = (props: Props) => {
             />
             <Slider
               progress={progress}
+              bufferValue={bufferValue}
               duration={duration}
               mainColor={mainColor}
               onFullScreen={onFullScreen}
