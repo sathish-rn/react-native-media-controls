@@ -76,6 +76,7 @@ const Slider = (props: Props) => {
           </Text>
         </View>
         <RNSlider
+          disabled={false}
           style={[styles.progressSlider]}
           bufferValue={bufferValue}
           bufferStyle={bufferStyle}
